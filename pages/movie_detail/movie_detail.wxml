@@ -1,0 +1,49 @@
+<view class="loading" bindlongtap="tap" wx:if="{{loading}}">
+    <view class="loading-content">
+        <view class="weui-loading"></view>
+        <view class="text">正在加载...</view>
+    </view>
+  </view>
+<view>
+    <view class="movie-pic">
+        <view class="movie-bg" 
+              style="background-image:url({{movie.images.large}})">
+        </view>
+        <image src="{{movie.images.large}}" mode="aspectFill"></image>
+        <view class="content" style="color:#fff;">
+            <view class="movie-name cn">
+                {{movie.title}}
+            </view>
+            <view class="movie-name en" 
+            wx:if="{{movie.original_title != movie.title}}">
+                {{movie.original_title}}
+            </view>
+            <view class="rating">
+                <view class="score">
+                  {{movie.rating.average}}
+                </view>
+                <view class="stars">
+                  ✨✨✨✨✨✨
+                </view>
+                <view class="count">
+                    {{movie.ratings_count}}人评价
+                </view>
+            </view>
+        </view>
+    </view>
+     <view class="content-others">
+        <view class="item">
+        类型：<block wx:for="{{movie.genres}}" wx:key="*this" 
+                   wx:for-item="genre" wx:for-index="index">
+                   {{genre}}{{(index+1)<movie.genres.length ? '/' : ''}}
+            </block>
+        </view>
+        <view class="item">
+            主演：
+            <block wx:for="{{movie.casts}}" wx:key="*this" 
+                   wx:for-item="cast" wx:for-index="index">
+                   {{cast.name}}{{(index+1)<movie.casts.length ? '/' : ''}}
+            </block>
+        </view>
+     </view>
+</view>

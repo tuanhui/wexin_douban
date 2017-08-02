@@ -1,0 +1,139 @@
+<!--index.wxml-->
+<view class="loading" wx:if="{{loading}}">
+    <view class="weui-loading"></view>
+    <view class="text">正在加载...</view>
+</view>
+<view class="container">
+    <view class="header">
+        <view class="location" bindtap="chooseCity">
+            <view class="location-text">
+              {{current_city}}
+            </view>
+            <view class="arrow-down">
+               <view class="arrow-down-content">◇</view>
+            </view>
+        </view>
+        <view class="search">
+           <view class="page__bd">
+                <view class="weui-search-bar">
+                    <view class="weui-search-bar__form">
+                        <view class="weui-search-bar__box">
+                            <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+                            <input type="text" class="weui-search-bar__input" placeholder="电影/电视剧/影人" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+                            <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+                                <icon type="clear" size="14"></icon>
+                            </view>
+                        </view>
+                        <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+                            <icon class="weui-icon-search" type="search" size="14"></icon>
+                            <view class="weui-search-bar__text">电影/电视剧/影人</view>
+                        </label>
+                    </view>
+                    <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="tab-layout">
+         <view class="weui-tab">
+            <view class="weui-navbar">
+                <block wx:for="{{tabs}}" wx:key="*this">
+                    <view id="{{index}}" 
+                    class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+                        <view class="weui-navbar__title">
+                            {{item}}
+                        </view>
+                    </view>
+                </block>
+                <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+            </view>
+            <view class="weui-tab__panel">
+                <view class="weui-tab__content" 
+                      hidden="{{activeIndex != 0}}">
+                      <scroll-view scroll-y="{{true}}" 
+                      style="width:100%;height:{{screenH}}px;"
+                      bindscrolltolower="loadMore">
+                      <block wx:for="{{in_theaters.subjects}}"
+                      wx:for-item="item" wx:key="*this">
+                      <navigator 
+                       url="/pages/movie_detail/movie_detail?id={{item.id}}">
+                      <view class="movie-item" >
+                          <image src="{{item.images.large}}" class="pic">
+                          </image>
+                          <view class="desc">
+                          <view class="name">
+                            {{item.title}}
+                          </view>
+                          <view class="star">
+                          <view class="star-bg">
+                          <image src="../../images/rating_star_small_off.png">
+                          </image>
+                          <image src="../../images/rating_star_small_off.png">
+                          </image>
+                          <image src="../../images/rating_star_small_off.png">
+                          </image>
+                          <image src="../../images/rating_star_small_off.png">
+                          </image>
+                          <image src="../../images/rating_star_small_off.png">
+                          </image>
+                           <view class="star-text">
+                              {{item.rating.average}}
+                          </view>
+                          </view>
+                          <view class="start-content">
+                          <image hidden="{{item.rating.average == 0}}" 
+                                 src="{{item.rating.starts == 5 ? '../../images/rating_star_small_half.png':'../../images/rating_star_small_on.png'}}">
+                          </image>
+                          <image hidden="{{item.rating.average <= 2}}" 
+                                 src="{{item.rating.starts == 15 ? '../../images/rating_star_small_half.png':'../../images/rating_star_small_on.png'}}">
+                          </image>
+                          <image hidden="{{item.rating.average <= 4}}" 
+                                 src="{{item.rating.starts == 25 ? '../../images/rating_star_small_half.png':'../../images/rating_star_small_on.png'}}">
+                          </image>
+                          <image hidden="{{item.rating.average <= 6}}" 
+                                 src="{{item.rating.starts == 35 ? '../../images/rating_star_small_half.png':'../../images/rating_star_small_on.png'}}">
+                          </image>
+                          <image hidden="{{item.rating.average <= 8}}" 
+                                 src="{{item.rating.starts == 45 ? '../../images/rating_star_small_half.png':'../../images/rating_star_small_on.png'}}">
+                          </image>
+                          </view>
+                          </view>
+                          <view class="director">导演：
+                              <block wx:for="{{item.directors}}" wx:key="*this" wx:for-item="director" wx:index="index">
+                              {{director.name}}{{index+1 < item.directors.length ? '、' :''}}
+                              </block>
+                          </view>
+                          <view class="protagonist">主演：
+                              <block wx:for="{{item.casts}}" wx:key="*this" wx:for-item="cast" wx:index="index">
+                              {{cast.name}}{{index+1 < item.casts.length ? '/' :''}}
+                              </block>
+                          </view>
+                          <view class="count">{{item.collect_count}}人看过</view>
+                          </view>
+                          <button class="btn-ticket">
+                              购票
+                          </button>
+                      </view>
+                      </navigator>
+                      </block>
+                      <view class="no-more" 
+                      style="line-height:80rpx;font-size:26rpx;" 
+                      wx:if="{{in_theaters_nomore}}">
+                          没有更多数据了
+                      </view>
+                      <view class="weui-loadmore" 
+                      wx:if="{{in_theaters_loadmore}}">
+                          <view class="weui-loading"></view>
+                          <view class="weui-loadmore__tips">正在加载</view>
+                      </view>
+                      </scroll-view>
+                </view>
+                <view class="weui-tab__content" 
+                      style="line-height:500rpx;text-align:center;"
+                      hidden="{{activeIndex != 1}}">
+                      即将上映
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

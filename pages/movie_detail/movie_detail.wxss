@@ -1,0 +1,110 @@
+page {
+  width: 100%;
+  height: 100%;
+} 
+.loading {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: #fff;
+}
+.loading .loading-content {
+  position: absolute;
+  height: 250rpx;
+  width: 250rpx;
+  z-index: 2;
+  border-radius: 10rpx;
+  background-color: white;
+  border: 1rpx solid #ccc;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+.loading .weui-loading {
+  margin:60rpx 105rpx 0;
+  width: 60rpx;
+  height: 60rpx;
+}
+.loading .text {
+  text-align: center;
+  margin-top: 40rpx;
+  font-size: 32rpx;
+  color: rgb(116, 116, 116);
+}
+.movie-pic {
+    width: 100%;
+    height: 320rpx;
+    background-color: #333;
+    position: relative;
+}
+.movie-bg {
+  width: 100%;
+  height: 320rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: .2;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.movie-pic image {
+  position: absolute;
+  left: 20rpx;
+  top: 100rpx;
+  height: 280rpx;
+  width: 200rpx;
+  border-radius: 4rpx;
+  box-shadow: 6rpx 6rpx 2rpx rgba(66, 66, 66,.2);
+}
+.content {
+  position: absolute;
+  left: 240rpx;
+  top: 100rpx;
+  margin-top: 20rpx;
+}
+.content .movie-name {
+  width: 400rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  height: 55rpx;
+  line-height: 55rpx;
+  font-size: 40rpx;
+  display: inline-block;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+
+.content .rating {
+  position: relative;
+}
+.content .score {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 60rpx;
+  width: 80rpx;
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+}
+.content .stars {
+    position: absolute;
+    left: 90rpx;
+    top: 0;
+    height: 35rpx;
+    line-height: 35rpx;
+    font-size: 28rpx;
+}
+.content .count {
+    position: absolute;
+    left: 90rpx;
+    height: 35rpx;
+    line-height: 35rpx;
+    font-size: 28rpx;
+    top: 40rpx;
+}
+
+.content-others {
+  margin-top: 80rpx;
+  margin-left: 20rpx;
+}

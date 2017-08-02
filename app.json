@@ -1,0 +1,41 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/city/city",
+    "pages/explore/explore",
+    "pages/mine/mine",
+    "pages/movie_detail/movie_detail",
+    "pages/logs/logs"
+  ],
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "./images/ic_hot_normal.png",
+        "selectedIconPath": "./images/ic_hot_activated.png",
+        "text": "热映"
+      },
+      {
+        "pagePath": "pages/explore/explore",
+        "iconPath": "./images/ic_explore_normal.png",
+        "selectedIconPath": "./images/ic_explore_activated.png",
+        "text": "找片"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "iconPath": "./images/ic_mine_normal.png",
+        "selectedIconPath": "./images/ic_mine_activated.png",
+        "text": "我的"
+      }
+    ],
+    "color": "#b0b0b0",
+    "selectedColor": "#5b5b5b",
+    "backgroundColor": "#fff"
+  },
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "deeppink",
+    "navigationBarTitleText": "豆瓣电影Lite",
+    "navigationBarTextStyle":"white"
+  }
+}
